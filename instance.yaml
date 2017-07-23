@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  esuranceEC2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-a4c7edb2
+      InstanceType: t2.micro
+      KeyName: jc-keypair
+      SubnetId: !ImportValue esuranceDemo-SubnetAId
+      SecurityGroupIds:
+        - !ImportValue esuranceDemo-SecurityGroupId
