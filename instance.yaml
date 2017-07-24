@@ -1,4 +1,12 @@
 AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  NetworkStackName:
+    Description: "The name of the base networking stack."
+    Type: String
+    MinLength: 1
+    MaxLength: 255
+    AllowedPattern: ^[a-zA-Z][-a-zA-Z0-9]*$
+    Default: esuranceDemo
 Resources:
   esuranceEC2Instance:
     Type: "AWS::EC2::Instance"
@@ -6,6 +14,7 @@ Resources:
       ImageId: ami-a4c7edb2
       InstanceType: t2.micro
       KeyName: jc-keypair
-      SubnetId: !ImportValue esuranceDemo-SubnetAId
+      SubnetId:
+        Fn::ImportValue: !Sub "${NetworkStackName}-SubnetAId"
       SecurityGroupIds:
-        - !ImportValue esuranceDemo-SecurityGroupId
+        - Fn::ImportValue: !Sub "${NetworkStackName}-SecurityGroupId"
