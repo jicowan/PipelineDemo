@@ -12,7 +12,7 @@ Resources:
     Type: "AWS::EC2::Instance"
     Properties:
       ImageId: ami-a4c7edb2
-      InstanceType: t2.micro
+      InstanceType: m4.large
       KeyName: jc-keypair
       SubnetId:
         Fn::ImportValue: !Sub "${NetworkStackName}-SubnetAId"
